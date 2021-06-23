@@ -36,14 +36,14 @@ int main()
     cout<<"Enter the number of boards: ";
     n = 6;
 
-    vector<int> boards = { 658, 786, 531, 47, 169, 397, 914 };
+    vector<int> boards = { 640, 435, 647, 352, 8, 90, 960, 329, 859 };
 
     // for (int i = 0; i<n ; i++){
     //     boards.push_back(10*(i+1));
     // }
 
     int high = accumulate(boards.begin(), boards.end(), 0), low = 786, mid, ans = -1; 
-    int k=5;
+    int k=3;
     cout<<"Enter the number of painters: "<<endl;
     while(high >= low){
         mid = (high + low )/2;
@@ -57,6 +57,6 @@ int main()
             low = mid+1;
         }
     }
-    cout<<"the min time is: "<<ans<<endl;
+    cout<<"the min time is: "<<ans*10<<endl;
     return 0;
 }
