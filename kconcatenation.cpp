@@ -4,7 +4,7 @@ using namespace std;
 
 int main()
 {
-    vector <int> arr ={-2, -3, 4, -1, -2, 1, 5, -3};
+    vector <int> arr ={-5, -2, 0, 0, 3, 9, -2, -5, 4};//{-2, -3, 4, -1, -2, 1, 5, -3};
     int k;
     cin>>k;
     int flag = 0;
@@ -35,7 +35,7 @@ int main()
     int n = arr.size();
     int sum = accumulate(arr.begin(), arr.end(), 0);
 
-    if(sum >= 0){
+    if(sum > 0){
         vector<int> sumarr;
         sumarr.push_back(0);
         for(int i = 0, j = 0; i<(n*2); ++i, ++j){
