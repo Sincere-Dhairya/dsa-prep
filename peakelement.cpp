@@ -16,7 +16,6 @@ int main()
         cout<<arr[i]<<endl;
         m = max(m, arr[i]);
         ++map1[arr[i]];
-
     }
 
     for (map<int, int>::iterator itr = map1.begin(); itr != map1.end(); itr++){
@@ -29,12 +28,19 @@ int main()
     else{
         cout<<"The Peak Element is: "<<m<<endl;
     }
+    map<int,int>::iterator itr;
+    itr = map1.begin();
+    for (map<int, int>::iterator itr = map1.begin(); itr != map1.end(); itr++){
+        cout<<itr->first<<"  "<<itr->second<<endl;
+    }
+}
 
     //double pointer approach.
 /*
 checck if ith or jth element =  temp, if yes, count++;
 if its for the first time to count ki value 1 kardo.
 */
+/*
     int temp = INT_MIN, count = 0;
     int i =0, j = arr.size()-1;
 
@@ -78,3 +84,4 @@ if its for the first time to count ki value 1 kardo.
     else cout<<"No Peak!."<<endl;
 
 }
+*/

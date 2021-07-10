@@ -4,7 +4,7 @@ using namespace std;
 
 int main()
 {
-    vector<int> nums = {2, 7, 9, 1, 3, 5};//{2,0,2,1,1,0};
+    vector<int> nums = {0,0};//{2,0,2,1,1,0};//{2, 7, 9, 1, 3, 5};//
     int n = nums.size();
     /*int rno = 0, wno = 0, bno = 0;
     for ( int i = 0; i<n; i++){
@@ -45,6 +45,29 @@ int main()
             if(nums[j]<nums[j-1]) swap(nums[j], nums[j-1]);
         }
     }*/
+    int j =0, i =0;
+        if(nums.size() == 1) return 0;
+        while(j < nums.size()){
+            if(nums[j] <2){
+                swap(nums[i], nums[j]);
+                ++i; ++j;
+            }        
+            
+            if(nums[j] == 2){
+                ++j;
+            }
+        }
+        
+        i = 0; j = 0;
+        while(j < nums.size()){
+            if(nums[j] == 1) ++j;
+            else if(nums[j] == 2) break;
+            else{
+                swap(nums[i], nums[j]);
+                ++j;
+                ++i;
+            }
+        }
     
     cout<<'[';
     for(int i = 0; i<n; i++){
