@@ -71,8 +71,7 @@ void reversing_using_stack(node * &head){
 
 void reversing(node * &head){
     cout<<"Traversed\n";
-    node * pvsptr = head, *nxtptr  =head;
-    nxtptr = head->next;
+    node * pvsptr = head, *nxtptr  =head->next;
     pvsptr->next = NULL;
 
     while(nxtptr != NULL){
@@ -138,15 +137,16 @@ node * finding(node * head1, node * head2){
     return ans;
 }
 
-void reversing2(node * &head, int k, int l){
+/*void reversing2(node * &head, int k, int l){
     int calc = ceil(l/k);
     vector<stack<int>> united(calc);
     
     node * temp = head;
-
-    for(int i =0, x = 0; i < l; i++){
+    int x = 0;
+    for(int i =0; i < l; i++){
         if(i%k == 0) ++x;
         united[x].push(temp->data);
+        cout<<"Pushed into stack!\n"
         temp = temp->next;
     }
 
@@ -167,4 +167,33 @@ void reversing2(node * &head, int k, int l){
             }
         }
     }
+}
+*/
+node * traversal = new node(NULL);
+node * reversing_list(node * &head, int k){
+    node * pvsptr = nullptr;
+    node * nxtptr = head->next;
+    head->next = pvsptr;
+    pvsptr = head;
+
+    node * store1 = head;
+    int count = 1;
+
+    while(count != k){
+        if(nxtptr == NULL) return head;
+
+        head = nxtptr;
+        nxtptr = nxtptr->next;
+        head->next = pvsptr;
+        pvsptr = head;
+        ++count;
+    }
+    if (nxtptr != NULL){
+        head = nxtptr;
+        store1->next = reversing_list(head, k);
+    }
+
+    traversal = pvsptr;
+
+    return traversal;
 }
