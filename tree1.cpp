@@ -12,11 +12,24 @@ int main(){
 
     printingpreorder(root);
     cout<<endl;
+
     printinginorder(root);
     cout<<endl;
+
     printingpostorder(root);
     cout<<endl;
-    calling(root);
+
+    bfs(root);
+    cout<<endl;
+
+    cout<<"the height of the tree is: ";
+    heightcalc(root, 0);
+    cout<<max_height<<endl;
+    
+    cout<<"height 2 is: ";
+    height2(root);
+    cout<<max_imum<<endl;
+
     deleting(root);
     return 0;
 }

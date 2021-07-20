@@ -8,6 +8,8 @@ class Tree{
     //bool pos = false;
     Tree * left = NULL;
     Tree * right = NULL;
+    int height;
+    int diameter = 0;
 
     Tree(int data){
         this->data = data;
@@ -21,6 +23,8 @@ void inserting(Tree * &root, int data){
     Tree * current = root;
     if(root == NULL){
         root = new Tree(data);
+        root->height = 0;
+        root->diameter = 0;
         if(root) cout<<data<<" inserted!"<<endl;
     }
     else{
@@ -36,6 +40,7 @@ void inserting(Tree * &root, int data){
             }
         }
         Tree * var = new Tree(data);
+        var->height = current->height +1;
         if(data > current->data) {current->right = var; cout<<data<<" inserted!"<<endl;}
         else {current->left = var; cout<<data<<" inserted!"<<endl;}
     }
@@ -85,18 +90,47 @@ void deleting(Tree * &root){
 
 }
 
-void bfs(Tree * node1, Tree * node2){
-    if(node1 == node2 == NULL) return;
-    else if(node1 == NULL && node2 != NULL) cout<<node2->data<<" ";
-    else if(node1 != NULL && node2 == NULL) cout<<node1->data<<" ";
-    else{
-        cout<<node1->data<<" "<<node2->data<<" ";
-        bfs(node1->left, node1->right);
-        bfs(node2->left, node2->right);
+    queue<Tree *> q;
+
+void bfs( Tree * root){
+    if(!root) return;
+    q.push(root);
+
+    while(!q.empty()){
+        Tree * temp = q.front();
+        q.pop();
+        cout<<temp->data<<" ";
+        if(temp->left) q.push(temp->left);
+        if(temp->right) q.push(temp->right);
     }
+
 }
 
-void calling(Tree * root){
-    cout<<root<<" ";
-    bfs(root->left, root->right);
+int max_height = 0;
+
+void heightcalc(Tree * root, int h=0){
+    if(!root) return;
+
+    max_height = max(max_height, h);
+    heightcalc(root->left, h+1);
+    heightcalc(root->right, h+1);
+}
+
+
+int max_imum = 0;
+
+void height2(Tree * root){
+    if(!root) return;
+
+    max_imum = max(max_imum, root->height);
+    height2(root->left);
+    height2(root->right);   
+}
+
+int diametercalc(Tree * root){
+    if(root == NULL) return 0;
+    if(root->left == NULL && root->right == NULL) return root->height;
+
+    int temp = diametercalc(root->left) + diametercalc(root->right);
+    root->diameter = temp;
 }
