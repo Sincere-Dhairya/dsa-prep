@@ -47,4 +47,5 @@ int main(){
         cout<<up-lw<<endl;
         ans.push_back(up-lw);
     }
+    return 0;
 }

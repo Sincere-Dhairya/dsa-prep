@@ -27,6 +27,7 @@ int main()
 }
 */
 void func(int n, vector<int> &nums) {
+
 	vector<int> arr;
 	arr.push_back(nums[0]);
 	cout<<1<<" ";
@@ -41,8 +42,48 @@ void func(int n, vector<int> &nums) {
 		cout<<arr.size()<<" ";
 	}
 }
-/*
+bool cmp(pair<int, int> & a, pair<int, int> & b){
+    return a.first<b.first;
+}
 int main() {
+    vector<int> nums = {1,2, 0};
+    if(nums[0] == 1 && nums[1] == 2) return 1;
+
+    int n = nums.size();
+    set<int> list;
+
+    map<int, int> map1;
+    
+    for(int i =0; i<n; i++){
+        ++map1[nums[i]];
+    }
+    
+    //sort(map1.begin(), map1.end(), cmp);
+
+    auto itr = map1.begin();
+    cout<<itr->first<<endl;
+
+    for(int i =1; i<n; i++)
+        list.insert(nums[i]);
+    
+    int maxim = nums[0], i;
+
+    for(i =0; i<n; i++){
+        auto tempitr = list.find(nums[i]);
+        //cout<<"Tempitr exits: "<<*tempitr<<endl;
+        if(tempitr == list.end()){
+            //cout<<"entered"<<endl;
+            if(nums[i] == *tempitr) list.erase(tempitr);
+            //cout<<"exited"<<endl;
+        }
+        else list.erase(tempitr);
+        
+        maxim = max(maxim, nums[i]);
+        if(list.empty()) break;
+        if(maxim <= *list.begin()) break;
+    }
+    cout<<i+1;
+    return i+1;
 	//int n;
 	//cin>>n;
     /*
@@ -70,7 +111,6 @@ int main() {
         pq.pop();
     }
     cout<<pq.top()<<endl;*/
-/*
+
     return 0;
 }
-*/
