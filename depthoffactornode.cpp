@@ -1,6 +1,8 @@
 #include<bits/stdc++.h>
 
 using namespace std;
+
+// complexity: O(sqrt(n)).
 bool checkprime(int n){
     bool flag = 0;
     for(int i = 2; i<=sqrt(n); i++){
@@ -19,6 +21,7 @@ bool checkprime(int n){
     }
 }
 
+// complexity: O(sqrt(n)).
 set<int> factors(int n){
     set<int> list;
 
@@ -44,15 +47,16 @@ int main(){
     }
 
     int count = 0;
-    while(checkprime(n)==0){
-        set<int> list = factors(n);
+
+    while(checkprime(n)==0){        //O(n)* sqrt(n)          O (n^(3/2)).
+        set<int> list = factors(n); // O(sqrt n).
         //cout<<"'";
         auto itr = list.end();
         //cout<<*itr;
         --itr;
         //cout<<*itr<<endl;
         
-        while(checkprime(*itr) && itr != list.begin()) --itr;
+        while(checkprime(*itr) && itr != list.begin()) --itr; // O(sqrt n )
         ++count;
         n = *itr;
     }
