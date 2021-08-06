@@ -1,23 +1,3 @@
-// Sample code to read input and write output:
-
-/*
-#include <iostream>
-#include<bits/stdc++.h>
-
-
-using namespace std;
-
-int main() 
-{
-	char name[20];
-	cin >> name;                     // Read input from STDIN
-	cout << "Hello " << name;        // Write output to STDOUT
-	return 0;
-}
-*/
-
-// Warning: Printing unwanted or ill-formatted data to output will cause the test cases to fail
-
 #include<bits/stdc++.h>
 
 using namespace std;
