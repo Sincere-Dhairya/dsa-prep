@@ -19,11 +19,17 @@ int main(){
     printinggraph(graph, v);
 */
     vector<graphnode> * graph = new vector<graphnode> [v];
-    addedgenew(graph, 0, 1);
-    addedgenew(graph, 0, 2);
-    addedgenew(graph, 2, 3);
-    addedgenew(graph, 1, 4);
-    addtwoedgenew(graph, 3, 4);
+    addtwoedgenew(graph, 0, 1);
+    addtwoedgenew(graph, 0, 2);
+    addtwoedgenew(graph, 2, 3);
+    addtwoedgenew(graph, 1, 4);
+    //addtwoedgenew(graph, 3, 4);
     printingnew(graph,v);
+    //bfs(graph, v);
+    cout<<endl;
+    vector<bool> status(v, false);
+    //dfs(graph, 0, status, v);
+    topologicalsort(graph, v, status, 0);
+    cout<<endl;
     return 0;
 }
