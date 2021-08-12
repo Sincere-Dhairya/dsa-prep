@@ -108,3 +108,60 @@ void printinggraph(vector<int> *graph, int v){
         cout<<endl;
     }
 }
+
+//<------------ Cycle Detection ------------>
+map<int, vector<int> > graph;
+map<int, bool> status;
+
+void addedgetograph(int u, int v){
+    graph[u].push_back(v);
+    status[u] = status [v] = false;
+}
+
+void bfscycle(){
+    queue<pair<int, int>> Q;
+    int begin = graph.begin()->first;
+    Q.push({begin, -1});
+    status[begin] = true;
+    bool flag = 0;
+    while(!Q.empty()){
+        int cur_child = Q.front().first;
+        int parent = Q.front().second;
+        for(int i =0 ;i<graph[cur_child].size(); i++){
+            int temp = graph[cur_child][i];
+            if(temp != parent){
+                if(status[temp] == 1){
+                    cout<<"Cycle exists";
+                    flag = 1;
+                    break;
+                }
+                else{
+                    Q.push({temp, cur_child});
+                    status[temp] = true;
+                }
+            }
+        }
+        Q.pop();
+        if(flag) break;
+    }
+}
+bool cycledetected = false;
+void dfscycle(int child, int parent){
+    
+    for(int i = 0; i<graph[child].size(); i++){
+        int elem = graph[child][i];
+        if(elem != parent){
+            if(status[elem] == 1){
+                if(cycledetected == 0){
+                    printf("Cycle Exists\n");
+                    cycledetected = 1;
+                }
+                break;
+            }
+            else{
+                status[elem] = 1;
+                dfscycle(elem, child);
+            }
+        }
+    }
+}
