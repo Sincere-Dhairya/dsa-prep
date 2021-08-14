@@ -32,16 +32,6 @@ void dfs_check(int parent){
     }
 }
 
-void topological_by_dfs(int parent, stack<int> & order){
-    status[parent] = true;
-    for(int i =0; i<graph[parent].size(); i++){
-        int temp = graph[parent][i];
-        if(!status[temp]){
-            topological_by_dfs(temp, order);
-        }
-    }
-    order.push(parent);
-}
 void printstack(stack<int> order){
     while(!order.empty()){
         cout<<order.top()<<" ";
@@ -60,8 +50,6 @@ int main(){
     addedge(5,9);
     addedge(9,10);
     //addedge(10,4);
-    //dfs_check(1);
-    stack<int> order;
-    topological_by_dfs(1, order);
-    printstack(order);
+    dfs_check(1);
+    //printstack(order);
 }
