@@ -17,7 +17,6 @@ bool validposition(int row, int q, int n){
         if( qc[i] || leftd[n+row-i] || rightd[row+i] ) continue;
         else{
             chessboard[row][i] = 
-            qr[row] =
             qc[i] = 
             leftd[n+row-i] = 
             rightd[row+i] = q;
@@ -26,7 +25,6 @@ bool validposition(int row, int q, int n){
             else{
                 chessboard[row][i] = 
                 qc[i] =
-                qr[row] = 
                 leftd[n+row-i] = 
                 rightd[row+i] = 0;
             }
