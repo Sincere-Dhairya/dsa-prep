@@ -42,14 +42,14 @@ int main(){
     addedge1(3, 4);
     addedge1(4, 5);
 
-    dfs(1);
+    //dfs(1);
 
     int V = 5;
     for(int i = 1; i<V+1; i++){
         status[i] = false;
         for(int j : graph[i]) make_transpose(j, i);
     }
-
+    
     for(int i = 1; i<= V; i++){
         if(status[i] == 0){
             another_dfs(i);
