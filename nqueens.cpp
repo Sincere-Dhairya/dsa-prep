@@ -3,7 +3,7 @@
 using namespace std;
 
 vector<vector<int>> chessboard(4, vector<int> (4, 0));
-vector<int> qc(4, 0), qr(4, 0), leftd(8, 0), rightd(8,0);
+vector<int> qc(4, 0), leftd(8, 0), rightd(8,0);
 void printingchess();
 
 bool validposition(int row, int q, int n){
