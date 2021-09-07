@@ -21,26 +21,24 @@ int binsearch(vector<int> arr, int n, int high)
 //
 int main()
 {
-    vector<int> nums ={1,2,3,4,5,6,7,7,9};// {10,9,2, 2,5,3,7, 7,101,7,18};
-    auto k = upper_bound(nums.begin(), nums.end(), 7)-nums.begin();
+    vector<int> A ={14, 24, 18, 46, 55, 53, 82, 18, 101, 20, 78, 35, 68, 9, 16, 93, 101, 85, 81, 28, 78};// {10,9,2, 2,5,3,7, 7,101,7,18};
+    //auto k = upper_bound(nums.begin(), nums.end(), 7)-nums.begin();
     
-    cout<<k<<" "<<nums[k]<<endl;
-    int n = nums.size();
-    vector<int> lis;
-
-    lis.push_back(nums[0]);
+    //cout<<k<<" "<<nums[k]<<endl;
+    int n = A.size();
+    vector<int> dp(n,1);
+    cout<<n;
+    //lis.push_back(nums[0]);
     
-    for(int i =1; i<n; i++){
-        if(lis.back() <= nums[i]) lis.push_back(nums[i]);
-        else{
-            int ind = upper_bound(lis.begin(), lis.end(), nums[i])-lis.begin();
-            lis[ind] = nums[i];
+    for(int i =0; i<n; i++){
+        for(int j =0; j<n; j++){
+            if(A[j] < A[i] && dp[i] <= dp[j]) dp[i] = dp[j]+1;
         }
     }
-    cout<<lis.size()<<" "<<endl;
-    auto itr = lis.begin();
-    for(int i = 0; i < lis.size(); i++){
-        cout<<lis[i]<<' ';
+    cout<<dp.size()<<" "<<endl;
+    //auto itr = lis.begin();
+    for(int i = 0; i < dp.size(); i++){
+        cout<<dp[i]<<' ';
     }
 
 }
