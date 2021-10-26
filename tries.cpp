@@ -36,6 +36,7 @@ void search(trie * root, string s){
     if(root->word) cout<<"Found";
     else cout<<"Not Found";
 }
+
 int main() {
 	// your code goes here
 	trie * root = new trie;
