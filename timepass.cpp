@@ -46,6 +46,7 @@ bool cmp(pair<int, int> & a, pair<int, int> & b){
     return a.first<b.first;
 }
 int main() {
+    
     vector<int> nums = {1,2, 0};
     if(nums[0] == 1 && nums[1] == 2) return 1;
 

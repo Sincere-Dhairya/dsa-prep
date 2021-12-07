@@ -77,3 +77,37 @@ public:
         return ans;
     }
 };
+
+//Solution 2
+/**
+ * r1 keeps track of the '(' and ')' to be added.
+ * r2 keeps track of the ')' to be added.
+ * 
+ * for '(' encountered:
+ *      r2 += 2 if r2 is even
+ *      else r1++, r2-- and then r2+=2 
+ * //here we transferred 1 from r2 to r1. the overall count remains same.
+ * 
+ * for ')' encountered:
+ *      --r2;
+ *      if r2 gets less than 0 i.e. -1, then we add 1 to r1 and make r2 = 1
+ * 
+ */
+class Solution {
+public:
+    int minInsertions(string s) {
+        int r1 = 0, r2 = 0;
+        for(char c: s){
+            if(c == '('){
+                if(r2 % 2) r1++, r2--;
+                r2+=2;
+            }
+            else{
+                --r2;
+                if(r2<0)
+                    r2 += 2, ++r1;
+            }
+        }
+        return r1+r2;
+    }
+};
