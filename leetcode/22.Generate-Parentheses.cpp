@@ -27,7 +27,7 @@ Constraints:
 
 1 <= n <= 8
 */
-//Brute Force Solution - 2^n TC and SC.
+//Brute Force Solution - 2^n TC and SC. Backtracking/ Recursion
 class Solution {
 public:
     void generate(vector<string> & arr, string s, int left, int right){
