@@ -114,3 +114,42 @@ public:
         return true;
     }
 };
+
+//When tries using 2D vectors, the result were faster.
+class Solution {
+public:
+    bool topo_sort(vector<vector<int> > &graph, vector<int>& indegrees, int n){
+        queue<int> q;
+        for(int i = 0; i<n; i++){
+            if(!indegrees[i]){
+                q.push(i);
+            }
+        }
+        
+        while(q.size()){
+            int node = q.front();
+            q.pop();
+            for(auto adj : graph[node]){
+                if(--indegrees[adj] == 0){
+                    q.push(adj);
+                }
+            }
+        }
+        
+        for(auto i: indegrees){
+            if(i){
+                return false;
+            }
+        }
+        return true;
+    }
+    bool canFinish(int n, vector<vector<int>>& P) {
+        vector<vector<int> > graph(n);
+        vector<int> indegrees(n, 0);
+        for(int i =0; i<P.size(); i++){
+            graph[P[i][1]].push_back(P[i][0]);
+            ++indegrees[P[i][0]];
+        }
+        return topo_sort(graph, indegrees, n);
+    }
+};

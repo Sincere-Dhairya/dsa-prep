@@ -1,4 +1,5 @@
 //agressive cow problem.
+// Variable Binary Search is used.
 
 #include<bits/stdc++.h>
 
