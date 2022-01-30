@@ -46,5 +46,6 @@ int main()
     }
 
     cout<<fibo[4]<<endl;
+    cout<<power(9,3);
     return 0;
 }
