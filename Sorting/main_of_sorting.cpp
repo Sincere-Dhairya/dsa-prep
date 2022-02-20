@@ -15,7 +15,7 @@ int main() {
     //insertion_recursion(arr2, arr2.size(), 1);
     //printing(arr2);
     arr2 = arr;
-    merge_sort(arr2, 0, arr2.size()-1);
+    mergesort(arr2, 0, arr2.size()-1);
     printing(arr2);
 	return 0;
 }

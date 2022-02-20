@@ -1,6 +1,6 @@
 /**
  * @file 2111. Minimum Operations to Make the Array K-Increasing
- * @author your name (you@domain.com)
+ * @author Dhairya Varshney
  * @brief 
  * @version 0.1
  * @date 2021-12-21

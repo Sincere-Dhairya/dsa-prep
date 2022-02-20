@@ -2,68 +2,63 @@
 
 using namespace std;
 
-
-void merging(vector<int>& nums, int low, int mid, int high)
-{
-    cout<<"merging called."<<endl;
-    
-    vector<int> arr1, arr2;
-
-    int n1 = mid - low +1, n2 = high - mid;
-    cout<<n1<<"  "<<n2<<endl;
-
-    for ( int i = 0; i<n1; i++){
-        arr1.push_back(nums[i+low]);
+void merging(vector<int> &arr, int high, int low, int mid){
+    vector<int> temp1, temp2, temp;
+    int n = high;
+    for(int i = low; i<mid; i++){
+        temp1.push_back(arr[i]);
     }
-
-    for(int i = 0; i < n2; i++){
-        arr2.push_back(nums[i+mid+1]);
+    for(int i =mid; i<n; i++){
+        temp2.push_back(arr[i]);
     }
-
-    int i = low, j = 0, k = 0;
-    
-    while(j< n1 && k < n2){
-        if(arr1[j] < arr2[k]){
-            nums[i] = arr1[j];
-            ++j;
+    int i=0,j=0;
+    while(i<mid and j<high-mid+1){
+        if(temp1[i] < temp2[j]){
+            temp.push_back(temp1[i++]);
         }
-
         else{
-            nums[i] = arr2[k];
-            ++k;
+            temp.push_back(temp2[j++]);
         }
-        ++i;
     }
-
-    i = low;
-    while(i <= high){
-        cout<<nums[i]<<", ";
-        if(i == high) cout<<endl;
-        ++i;
+    while(i<mid){
+        temp.push_back(temp1[i++]);
     }
-
+    while(j<high-mid+1){
+        temp.push_back(temp2[j++]);
+    }
+    for(int i = high-1; i>= low; i--){
+        arr[i] = temp.back();
+        temp.pop_back();
+    }
 }
 
-void mergesort(vector<int> &nums, int low, int high){
-    if(low<high){
-        int mid = (low+high)/2;
-        cout<<"done with mid"<<endl;
-        mergesort(nums, low, mid);
-        cout<<"done with mergesort1"<<endl;
-        mergesort(nums, mid+1, high);
-        cout<<"done with mergesort2"<<endl;
-        merging(nums, low, mid, high);
-        cout<<"done with merging"<<endl;
+void printing(vector<int> arr){
+    for(int i: arr){
+        cout<<i<<" ";
+    }
+    cout<<endl;
+}
+
+void mergesort(vector<int> &arr, int high, int low){
+    if(high > low){
+        cout<<"Merge Sort called: high: "<<high<<" low: "<<low<<endl;
+        int mid = (high+low)/2;
+        mergesort(arr, low, mid);
+        mergesort(arr, mid, high);
+
+        merging(arr, low, mid, high);
+        cout<<"Status after merging: ";
+        printing(arr);
     }
 }
 
 int main()
 {
-    printf("Hello World");
+    //printf("Hello World");
     vector<int> nums = {2, 7, 9, 1, 3, 5};
     
     int n = nums.size();
-    mergesort(nums, 0, n-1);
+    mergesort(nums, 0, n);
 
     //nums = temp;
     
