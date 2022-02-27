@@ -13,7 +13,7 @@ using namespace std;
 
 int power(int x, int y){
     if(y == 0) return 1;
-
+    
     int prod = power(x, y/2);
     prod*= prod;
     prod %= mod;
