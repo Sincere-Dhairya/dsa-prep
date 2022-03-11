@@ -2,55 +2,49 @@
 
 using namespace std;
 
-int partition(vector<int>& arr, int i, int j)
-{
-    int piv = i;
-    cout<<"partition called"<<endl;
-
-    while(i< j){
-        while(arr[piv] >= arr[i]){
-            ++i;
-        }
-
-        while(arr[piv] < arr[j]){
-            --j;
-        }
-
-        if( i > j) {
-            swap(arr[piv], arr[j]);
-            break;
-        }
-        else swap(arr[i], arr[j]);
-        cout<<"i is: "<<i<<", j is : "<<j<<endl;
+void printing(vector<int> & arr){
+    for(auto n : arr){
+        cout<<n<<" ";
     }
-    return j;
+    cout<<endl;
+    return;
 }
 
-void quicksort(vector<int>& arr, int i, int j)
-{
-    cout<<"quicksort called"<<endl;
-
-    if(i < j){
-        int piv = partition(arr, i, j);
-        cout<<piv<<endl;
-
-        quicksort(arr, i, piv-1);
-        quicksort(arr, piv+1, j); 
+int partitioning(vector<int> & arr, int start, int end){
+    int pivot = start;
+    while(start<end){
+        while(arr[start]<=arr[pivot]){
+            ++start;
+        }
+        while(arr[end]>arr[pivot]){
+            --end;
+        }
+        if(start<end){
+            swap(arr[start], arr[end]);
+        }
     }
+    swap(arr[pivot], arr[end]);
+    return pivot;
 }
+
+void quicksort(vector<int>&arr, int start, int end){
+    if(start<end){
+        int piv = partitioning(arr, start, end);
+        quicksort(arr, 0, piv-1),
+        quicksort(arr, piv+1, end);
+    }
+    return;
+}
+//2, 7, 9, 1, 3, 5 
 
 int main()
 {
-    vector<int> arr = {2, 7, 9, 1, 3, 5};
-    int n = arr.size();
-    cout<<"Main called"<<endl;
-    quicksort(arr, 0, n-1);
-
-    int i = 0;
-    cout<<endl;
-    while(i<n){
-        cout<<arr[i];
-        if(i != n-1) cout<<", ";
-        ++i;
-    }
+    vector<int> arr1 = {7,6,10,5,9,2,1,15,7}, arr2 = {1,6,23,4,12,56,7,2}, arr3 = {2, 7, 9, 1, 3, 5};
+    quicksort(arr1, 0, arr1.size()-1);
+    quicksort(arr2, 0, arr2.size()-1);
+    quicksort(arr3, 0, arr3.size()-1);
+    printing(arr1);
+    printing(arr2);
+    printing(arr3);
+    return 0;
 }
