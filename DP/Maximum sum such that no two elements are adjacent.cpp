@@ -4,7 +4,7 @@
  * @brief 
  * @version 0.1
  * @date 2022-03-11
- * 
+ * @link https://www.geeksforgeeks.org/maximum-sum-such-that-no-two-elements-are-adjacent/ @endlink
  * @copyright Copyright (c) 2022
  * 
  */
