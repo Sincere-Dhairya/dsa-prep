@@ -34,6 +34,7 @@ bool subset_construction(vector<int> & arr, int i, int sum){
     }
     return subset_construction(arr, i-1, sum) || subset_construction(arr, i-1, sum-arr[i-1]);
 }
+
 bool check_equal_sum_partition(vector<int> & arr){
     int n = arr.size(), sum = accumulate(arr.begin(), arr.end(), 0);
     if(sum&1){
@@ -42,8 +43,38 @@ bool check_equal_sum_partition(vector<int> & arr){
     sum/=2;
     return subset_construction(arr, n, sum);
 }
+
+bool dp_subset_construction(int N, int arr[]){
+    int sum = 0;
+    for(int i = 0; i<N; ++i){
+        sum += arr[i];
+    }
+    if(sum&1){
+        return false;
+    }
+    sum /=2;
+    vector<vector<bool>> cache(N+1, vector<bool>(sum+1, false));
+    for(int i=0; i<N; i++){
+        cache[i][0] = 1;
+    }
+
+    for(int i = 0; i<N; ++i){
+        for(int j = 1; j<=sum; ++j){
+            if(j<arr[i]){
+                cache[i+1][j] = cache[i][j];
+            }
+            else{
+                cache[i+1][j] = cache[i][j] || cache[i][j-arr[i]];
+            }
+        }
+    }
+    return cache[N][sum];
+}
+
 int main(){
     vector<int> arr = {1,5,11,5};
     // check if it can be partitioned into two subsets of equal sum.
     cout<<check_equal_sum_partition(arr);
+    int arr2[4] = {1,5,11,5};
+    cout<<dp_subset_construction(4, arr2);
 }

@@ -27,6 +27,23 @@ There is no subset that add up to 30.
 #include<bits/stdc++.h>
 using namespace std;
 
+void printing(vector<int> & arr){
+    for(int i=0; i<arr.size(); ++i){
+        cout<<arr[i]<<" ";
+    }
+    cout<<endl;
+}
+
+void printing(vector<vector<bool>> & arr){
+    for(int i = 0; i<arr.size(); i++){
+        for(int j = 0; j<arr[0].size(); ++j){
+            cout<<arr[i][j]<<" ";
+        }
+        cout<<endl;
+    }
+    cout<<endl;
+}
+
 bool recursive_construction(vector<int> & arr, int sum, int n){
     if(sum==0){
         return true;
@@ -46,34 +63,29 @@ bool check_subset(vector<int> & arr, int sum){
 
 bool dp_construction(vector<int> & arr, int sum){
     int n = arr.size();
+
+    printing(arr);
+
     vector<vector<bool>> cache(n+1, vector<bool>(sum+1, 0));
 
     for(int i = 0; i<=n ; ++i){
         cache[i][0] = 1;
     }
-    for(int i = 0; i<=n; i++){
-        for(int j = 0; j<=sum; ++j){
-            cout<<cache[i][j]<<" ";
-        }
-        cout<<endl;
-    }
+
+    printing(cache);
+
     for(int i = 0; i<n; i++){
         for(int j=1; j<=sum ; ++j){
             if(j<arr[i]){
                 cache[i+1][j] = cache[i][j];
             }
             else{
-                cache[i+1][j] = cache[i][j] || cache[i-1][j-arr[i]];
+                cache[i+1][j] = cache[i][j] || cache[i][j-arr[i]];
             }
         }
     }
 
-    for(int i = 0; i<=n; i++){
-        for(int j = 0; j<=sum; ++j){
-            cout<<cache[i][j]<<" ";
-        }
-        cout<<endl;
-    }
+    printing(cache);
 
     return cache[n][sum];
 }
