@@ -9,8 +9,11 @@
  * 
  */
 /*
-Ninjaland is a country in the shape of a 2-Dimensional grid 'GRID', with 'N' rows and 'M' columns. Each point in the grid has some cost associated with it.
-Find a path from top left i.e. (0, 0) to the bottom right i.e. ('N' - 1, 'M' - 1) which minimizes the sum of the cost of all the numbers along the path. You need to tell the minimum sum of that path.
+Ninjaland is a country in the shape of a 2-Dimensional grid 'GRID', with 'N' rows 
+and 'M' columns. Each point in the grid has some cost associated with it.
+Find a path from top left i.e. (0, 0) to the bottom right i.e. ('N' - 1, 'M' - 1) 
+which minimizes the sum of the cost of all the numbers along the path. You need to 
+tell the minimum sum of that path.
 */
 
 #include<bits/stdc++.h>
@@ -55,6 +58,7 @@ int main(){
         {4,5,4},
         {7,5,9}
     };
+    
     // Recursion.
     int n = matrix1.size(), m = matrix1[0].size();
     cout<<minCost(matrix1, n, m, 0, 0)<<endl;
