@@ -32,7 +32,26 @@ long countWaysToMakeChange(int *denominations, int n, int value){
 	vector<vector<long>> cache(n, vector<long>(value+1));
     return countWays(cache, denominations, n, value, 0);
 }
+long countWaysToMakeChange(int *arr, int n, int value){
+	int total = 0;
+	for(int i = 0; i<n; ++i) total += arr[i];
+	int tar = value;
+	
+	vector<vector<long>> cache(n, vector<long>(tar+1, 0));
+	for(int i = 0; i<= tar; ++i){
+		if(i%arr[n-1] == 0) cache[n-1][i] = 1;
+	}
+	
+	for(int i = n-2; i>=0; --i){
+		for(int j = 0; j<= tar; ++j){
+			long unpick = cache[i+1][j], pick = 0;
+			if(arr[i] <= j) pick = cache[i][j-arr[i]];
+			cache[i][j] = pick+unpick;
+		}
+	}
 
+	return cache[0][tar];
+}
 int main(){
     int arr[10] = {1,2,3,4,5,6,7,8,9,10};
     int n = 10, target = 1000, *ptr = arr;
