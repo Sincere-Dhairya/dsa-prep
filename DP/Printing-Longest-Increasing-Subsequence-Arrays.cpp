@@ -35,3 +35,5 @@ int longestIncreasingSubsequence(int arr[], int n){
     }
     return len;
 }
+
+// We can also use the Binary Search Method.
