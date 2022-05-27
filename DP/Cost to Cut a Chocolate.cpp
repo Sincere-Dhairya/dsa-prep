@@ -43,3 +43,26 @@ int cost(int n, int c, vector<int> &cuts){
     return costCalc(table, cuts, 1, c);
 }
 
+// Tabulation. 
+// TC: O(NxNxN), SC: O(NxN)
+int cost(int n, int c, vector<int> &cuts){
+    cuts.insert(cuts.begin(), 0),
+    cuts.emplace_back(n);
+    sort(cuts.begin(), cuts.end());
+    vector<vector<int>> table(c+2, vector<int> (c+2, 0));
+    
+    for(int i = c; i>0; --i){
+        for(int j = 1; j<=c; ++j){
+            if(j<i) continue;
+            int mincost = 1e7;
+            for(int k = i; k<=j; ++k){
+                mincost = min(
+                    mincost, 
+                    table[i][k-1]+ table[k+1][j]
+                );
+            }
+            table[i][j] = mincost + cuts[j+1]-cuts[i-1];
+        }
+    }
+    return table[1][c];
+}

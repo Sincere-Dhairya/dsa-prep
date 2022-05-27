@@ -65,3 +65,24 @@ int matrixMultiplication(vector<int> &arr, int N){
     }
     return table[1][N-1];
 }
+
+// Better approach for Tabulation.
+int matrixMultiplication(vector<int> &arr, int N){
+    vector<vector<int>> table(N, vector<int> (N, 1e9));
+    for(int i=0; i<N; ++i){
+        table[i][i] = 0;
+    }
+    
+    for(int i = N-2; i>0; --i){
+        for(int j = i+1; j<N; ++j){
+            int prod = arr[i-1]*arr[j];
+            for(int k = i; k<j; ++k){
+                table[i][j] = min(
+                    table[i][j],
+                    prod*arr[k] + table[i][k] + table[k+1][j]
+                );
+            }
+        }
+    }
+    return table[1][N-1];
+}
