@@ -32,7 +32,7 @@ Time limit: 1 sec
 */
 
 // Recursion + Memoization.
-// TC: Exponential, SC: O(N) + O(N)
+// TC: Exponential reduced to O(N) + O(K), SC: O(N) + O(N)
 int f(vector<int>& cache, vector<int>& arr, int& k, int& n, int i){
     if(i==n) return 0;
     if(cache[i]) return cache[i];
