@@ -35,7 +35,7 @@ Constraints:
 */
 
 // Recursion + Memoization.
-// TC: Exponential, SC: O(N)
+// TC: Exponential reduced to O(N) + O(K), SC: O(N) 
 class Solution {
 public:
     int f(vector<int>& cache, vector<int>& arr, int& k, int& n, int i){
