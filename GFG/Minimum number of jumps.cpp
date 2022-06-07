@@ -71,4 +71,23 @@ class Solution{
     }
 };
 
-// 
+// O(N) Solution using Arrays.
+class Solution{
+  public:
+    int minJumps(int arr[], int n){
+        int maxR = 0, steps = 1, jumps=0;
+        if(n==1) return 0;
+        if(arr[0] == 0) return -1;
+        for(int i=0; i<n; ++i){
+            if(i>maxR) return -1;
+            maxR = max(maxR, arr[i]+i);
+            if(maxR >= n-1) return jumps+1;
+            --steps;
+            if(!steps){
+                steps = maxR-i;
+                ++jumps;
+            }
+        }
+        return -1;
+    }
+};
