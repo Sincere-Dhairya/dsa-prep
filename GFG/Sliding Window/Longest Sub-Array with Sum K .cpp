@@ -42,7 +42,7 @@ Constraints:
 -10^5<=A[i], K<=10^5
 */
 
-// Brute Force
+// Brute Force Gave TLE
 // TC: O(NxN), SC: O(1)
 class Solution{
     public:
