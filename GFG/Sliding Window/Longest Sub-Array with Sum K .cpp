@@ -63,7 +63,7 @@ class Solution{
 
 };
 
-// Sliding Window Variable Size Window
+// Prefix Sum Solution.
 // TC: O(N), SC: O(N)
 class Solution{
     public:
