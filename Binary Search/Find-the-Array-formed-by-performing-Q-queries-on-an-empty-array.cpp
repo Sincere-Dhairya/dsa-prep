@@ -93,24 +93,3 @@ int main(){
     solveQueries(Queries, Q);
     return 0;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
